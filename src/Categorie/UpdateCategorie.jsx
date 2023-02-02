@@ -5,7 +5,8 @@ export default function UpdateCategorie() {
     let navigate=useNavigate();
     const[categorie,setCategorie]=useState({
         nom:"",
-        description:""
+        description:"",
+        duree:""
     });
     const{nom,description}=categorie;
     const onInputChange=(e)=>{
@@ -33,6 +34,10 @@ export default function UpdateCategorie() {
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Description</label>
                     <input type={"text"} className="form-control" placeholder="Description categorie" name="description" value={categorie.description} onChange={(e)=>onInputChange(e)}/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="duree" className="form-label">Duree</label>
+                    <input type={"number"} min="0"  max="24" className="form-control" placeholder="Description categorie" name="description" value={categorie.description} onChange={(e)=>onInputChange(e)}/>
                 </div>
                 <p> </p>
                 <p><button  className='btn btn-primary mx-2'>Inserer</button>
