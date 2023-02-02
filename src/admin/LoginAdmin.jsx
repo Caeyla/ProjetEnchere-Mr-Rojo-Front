@@ -2,22 +2,22 @@ import axios from 'axios';
 import React, { useState ,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../layout/Navbar';
-export default function LoginUser() {
-    const[users,setUsers]=useState([]);
+export default function LoginAdmin() {
+    const[admin,setAdmin]=useState([]);
     // useEffect(()=>{
     //     loadUsers();
     // },[]);
     let navigate=useNavigate();
-    const[login,setLogin]=useState({email:'',password:''});
-    const{email,password}=login;
+    const[login,setLogin]=useState({identification:'',password:''});
+    const{identification,password}=login;
     const onInputChange=(e)=>{
         setLogin({...login,[e.target.name]:e.target.value});
     };
     const onSubmit= async (e)=>{
         try{
             e.preventDefault();
-            const result=await axios.post("http://localhost:8080/loginUser", {email, password} );
-            setUsers(result.data); 
+            const result=await axios.post("http://localhost:8080/loginAdmin", {identification, password} );
+            setAdmin(result.data); 
             // const result=await axios.post("http://localhost:8080/loginUser?email="+email+"&password="+password);
             if(result.data.length>=1){
                 navigate("/accueil");
@@ -38,8 +38,8 @@ export default function LoginUser() {
                 <h2 className="text-center m-3">Login</h2>
                 <form onSubmit={(e)=>onSubmit(e)}>
                 <div className="mb-3">
-                    <label htmlFor="email" className="form-label">email</label>
-                    <input type={"text"} className="form-control" placeholder="Entrez votre email" name="email" value={login.email} onChange={(e)=>onInputChange(e)}/>
+                    <label htmlFor="identification" className="form-label">email</label>
+                    <input type={"text"} className="form-control" placeholder="Identification" name="identification" value={login.identification} onChange={(e)=>onInputChange(e)}/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">password</label>
